@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/styles.css" rel="stylesheet">
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-[rgba(0,175,154,0.3)] to-[rgba(35,8,113,0.4)] flex flex-col">
+    <header class="p-4">
+        <div class="container mx-auto">
+            <img src="/logo.png" alt="Logo" class="h-16 w-auto">
+        </div>
+    </header>
+    <main class="flex-grow flex items-center justify-center px-4 py-8">
+        <div class="bg-white rounded-lg shadow-xl p-8 max-w-md w-full">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">BRD to SRD</h1>
+            <!-- File upload form -->
+            <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data" class="mb-4">
+                <!-- Dropzone area -->
+                <div id="dropzone" class="border-2 border-dashed border-gray-300 rounded-lg p-6 mb-6 text-center cursor-pointer hover:border-blue-500 transition duration-300">
+                  <p class="text-gray-500">Drag and drop your file here, or click to select</p>
+                  <input id="fileInput" type="file" name="file" class="hidden" accept=".pdf">
+                  
+                  <!-- File information display area -->
+                  <div id="fileInfo" class="mt-4"></div>
+                </div>
+              
+                <!-- Button with spinner -->
+                <button type="submit" id="submitButton" class="w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition duration-300 flex items-center justify-center">
+                  <svg id="spinner" class="hidden animate-spin h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                  </svg>
+                  <span id="buttonText">Convert</span>
+                </button>
+              
+                <!-- Loading message -->
+                <p id="loadingMessage" class="text-center text-gray-600 mt-4 hidden">Please wait, processing your file...</p>
+              </form>
+            
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function() {
+          // Show the loading spinner and hide button text
+          document.getElementById('spinner').classList.remove('hidden');
+          document.getElementById('buttonText').classList.add('hidden');
+          
+          // Display the loading message
+          document.getElementById('loadingMessage').classList.remove('hidden');
+          
+          // Disable the submit button to prevent multiple submissions
+          document.getElementById('submitButton').disabled = true;
+        });
+      
+        // JavaScript to make the dropzone clickable
+        document.getElementById('dropzone').addEventListener('click', function() {
+          document.getElementById('fileInput').click();
+        });
+      
+        // Display selected file info
+        document.getElementById('fileInput').addEventListener('change', function() {
+          const file = document.getElementById('fileInput').files[0];
+          if (file) {
+            document.getElementById('fileInfo').innerHTML = `
+              <p class="text-gray-500">Selected File:</p>
+              <p class="font-semibold text-gray-700">${file.name}</p>
+              <p class="text-sm text-gray-500">Size: ${(file.size / 1024).toFixed(2)} KB</p>
+              <p class="text-sm text-gray-500">Type: ${file.type}</p>
+            `;
+          }
+        });
+      </script>
+    
+</body>
+</html>

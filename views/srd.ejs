@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/styles.css" rel="stylesheet">
+    <title>SRD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-[rgba(0,175,154,0.3)] to-[rgba(35,8,113,0.4)] flex flex-col">
+    <header class="p-4">
+        <div class="container mx-auto">
+            <img src="/logo.png" alt="Logo" class="h-16 w-auto">
+        </div>
+    </header>
+    <main class="flex-grow flex items-center justify-center px-2 py-8">
+        <div class="bg-white rounded-lg shadow-xl p-8 max-w-xl w-full">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">SRD</h1> 
+                <!-- Print to PDF Button -->
+        <span class="relative inline-flex">
+        <button onclick="window.print()" class="inline-flex items-center px-2 py-2 font-semibold text-sm shadow rounded-md text-sky-500 bg-white transition ease-in-out duration-150 ring-1 ring-slate-900/10 dark:ring-slate-200/20">
+          <!-- SVG Icon as Image -->
+          <img src="/print.svg" alt="Transactions" class="h-7 w-7">
+        </button>
+        
+        <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+        </span>
+      </span>
+      
+            <div class="markdown-content">
+                <%- content %> <!-- Render the HTML content unescaped -->
+              </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #d1d5db; /* gray-300 */
+  }
+  
+  .markdown-content th, .markdown-content td {
+    border: 1px solid #d1d5db;
+    padding: 0.5rem 1rem;
+    text-align: left;
+  }
+  
+  .markdown-content th {
+    background-color: #e5e7eb; /* gray-200 */
+    font-weight: 600;
+  }
+
+  @media print {
+    button {
+      display: none;
+    }
+
+    @media print {
+        body {
+          background: white;
+          color: black;
+        }
+        
+        .markdown-content {
+          width: 100%;
+          padding: 0;
+        }
+      
+        /* Ensure tables are styled correctly for print */
+        .markdown-content table {
+          border: 1px solid #000;
+        }
+        .markdown-content th, .markdown-content td {
+          border: 1px solid #000;
+          padding: 8px;
+        }
+      }
+  }
+  
